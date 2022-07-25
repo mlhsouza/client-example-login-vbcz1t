@@ -1,0 +1,49 @@
+<div style="margin: 80px 20px 0 20px;">
+	<div class="card-group interact-grid">
+
+		<div *ngFor="let alarm of alarms" class="col-xs-12 col-sm-4 col-md-3">
+			<div class="card">
+
+				<div class="card-header separator">
+					<div class="card-icon">
+						<i class="c8y-icon c8y-icon-smart-rules c8y-icon-duocolor"></i>
+					</div>
+					<div class="text-truncate card-title" title="{{alarm.severity}}">
+						{{alarm.severity}}
+            <span class="badge">{{alarm.count}}</span>
+					</div>
+				</div>
+
+				<div class="card-block" style="padding-top:15px">
+					<div class="row">
+						<div class="col-xs-12">
+							<span class="badge pull-right" [ngClass]="{'badge-danger' : alarm.status === 'ACTIVE'}">{{alarm.status}}</span>
+							<label class="small">Text</label>
+							<p>{{alarm.text}}</p>
+						</div>
+					</div>
+					<hr/>
+					<div class="row">
+						<div class="col-xs-12 text-right" *ngIf="alarm.status === 'ACTIVE'">
+							<button class="btn btn-success" (click)="updateStatus(alarm)">Acknowledge</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-xs-12 col-sm-4 col-md-3">
+			<div class="card">
+				<div class="card-header separator">
+					<div class="text-truncate card-title">
+						Create new
+					</div>
+				</div>
+				<div class="card-block" style="padding-top:15px">
+					<button class="btn btn-default" (click)="createNew()">New alarm</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

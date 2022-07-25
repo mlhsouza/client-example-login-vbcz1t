@@ -1,0 +1,34 @@
+<div class="loading">
+	<img class="mainlogo">
+	<form role="form" class="loginForm" (ngSubmit)="login()" #f="ngForm" novalidate>
+		<div class="input-group input-group-lg form-group tenantField" id="tenantField" [ngClass]="{'has-error': !tenant.valid && !tenant.pristine}">
+			<span class="input-group-addon">
+            <i class="fa fa-users"></i>
+          </span>
+			<input [(ngModel)]="model.tenant" #tenant="ngModel" type="text" name="tenant" autocapitalize="off" autocorrect="off" class="form-control"
+			 placeholder="Tenant" required>
+		</div>
+		<div class="input-group input-group-lg form-group" [ngClass]="{'has-error': !user.valid && !user.pristine}">
+			<span class="input-group-addon">
+            <i class="fa fa-user"></i>
+          </span>
+			<input [(ngModel)]="model.user" #user="ngModel" type="text" name="user" autocapitalize="off" autocorrect="off" class="form-control"
+			 placeholder="Username" required>
+		</div>
+
+		<div class="input-group input-group-lg form-group" [ngClass]="{'has-error': !password.valid && !password.pristine}">
+			<span class="input-group-addon">
+            <i class="fa fa-lock"></i>
+          </span>
+			<input [(ngModel)]="model.password" #password="ngModel" type="password" name="password" class="form-control" placeholder="Password"
+			 required>
+		</div>
+
+		<button [disabled]="!f.form.valid && !disabled" type="submit" class="btn btn-primary btn-lg btn-block form-group">Login</button>
+		<div style="margin-top: 10px;">
+			<a class="btn btn-link pull-right forgottenPasswordLink">Forgot password?</a>
+		</div>
+	</form>
+
+	<div class="alert alert-danger" [ngClass]="{ hidden: !error.shown }" style="margin-top: 55px;" id="error">{{error.msg}}</div>
+</div>
